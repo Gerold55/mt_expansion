@@ -30,156 +30,60 @@ local function my_register_stair_and_slab(subname, recipeitem, groups, images,
 		sounds, worldaligntex)
 end
 
+local stairs_table = { --name, color, colorize(hex or color name:intensity(1-255))
+{'Black', 'black', 'black:150'},
+{'Blue', 'blue', 'blue:100'},
+{'Brown', 'brown', '#964B00:100'},
+{'Cyan', 'cyan', 'cyan:100'},
+{'Dark Green', 'dark_green', 'green:100'},
+{'Dark Grey', 'dark_grey', 'black:110'},
+{'Green', 'green', '#32cd32:160'},
+{'Grey', 'grey', 'black:75'},
+{'Magenta', 'magenta', '#ff00ff:130'},
+{'Orange', 'orange', '#FF6A00:130'},
+{'Pink', 'pink', 'pink:170'},
+{'White', 'white', 'white:1'},
+{'Red', 'red', '#FF0000:100'},
+{'Violet', 'violet', '#9B26B6:130'},
+{'Yellow', 'yellow', 'yellow:100'},
+}
+
+for i in ipairs (stairs_table) do
+	local name = stairs_table[i][1]
+	local color = stairs_table[i][2]
+	local hex = stairs_table[i][3]
+
 my_register_stair_and_slab(
-	"wool_red",
-	"wool:red",
+	"wool_"..color,
+	"wool:"..color,
 	{cracky = 2},
-	{"wool_red.png"},
-	"Red Wool Stair",
-	"Red Wool Slab",
+	{"wool_"..color..".png"},
+	name.." Wool Stair",
+	name.." Wool Slab",
 	default.node_sound_defaults(),
 	false
 )
 
 my_register_stair_and_slab(
-	"wool_yellow",
-	"wool:yellow",
+	"brick_"..color,
+	"mt_expansion:brick_"..color,
 	{cracky = 2},
-	{"wool_yellow.png"},
-	"Yellow Wool Stair",
-	"Yellow Wool Slab",
-	default.node_sound_defaults(),
+	{"expansion_brick.png^[transformFX^[colorize:"..hex.."^expansion_brick_overlay.png",
+		"expansion_brick.png^[colorize:"..hex.."^expansion_brick_overlay.png",},
+	name.." Brick Stair",
+	name.." Brick Slab",
+	default.node_sound_stone_defaults(),
 	false
 )
 
 my_register_stair_and_slab(
-	"wool_black",
-	"wool:black",
+	"wood_"..color,
+	"wood:"..color,
 	{cracky = 2},
-	{"wool_black.png"},
-	"Black Wool Stair",
-	"Black Wool Slab",
-	default.node_sound_defaults(),
+	{"default_wood.png^[colorize:"..hex},
+	name.." Wood Stair",
+	name.." Wood Slab",
+	default.node_sound_wood_defaults(),
 	false
 )
-
-my_register_stair_and_slab(
-	"wool_white",
-	"wool:white",
-	{cracky = 2},
-	{"wool_white.png"},
-	"White Wool Stair",
-	"White Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_violet",
-	"wool:violet",
-	{cracky = 2},
-	{"wool_violet.png"},
-	"Violet Wool Stair",
-	"Violet Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_orange",
-	"wool:orange",
-	{cracky = 2},
-	{"wool_orange.png"},
-	"Orange Wool Stair",
-	"Orange Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_brown",
-	"wool:brown",
-	{cracky = 2},
-	{"wool_brown.png"},
-	"Brown Wool Stair",
-	"Brown Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_cyan",
-	"wool:cyan",
-	{cracky = 2},
-	{"wool_cyan.png"},
-	"Cyan Wool Stair",
-	"Cyan Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_dark_grey",
-	"wool:dark_grey",
-	{cracky = 2},
-	{"wool_dark_grey.png"},
-	"Dark Grey Wool Stair",
-	"Dark Grey Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_violet",
-	"wool:violet",
-	{cracky = 2},
-	{"wool_violet.png"},
-	"Violet Wool Stair",
-	"Violet Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_dark_green",
-	"wool:dark_green",
-	{cracky = 2},
-	{"wool_dark_green.png"},
-	"Dark Green Wool Stair",
-	"Dark Green Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_green",
-	"wool:green",
-	{cracky = 2},
-	{"wool_green.png"},
-	"Green Wool Stair",
-	"Green Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_pink",
-	"wool:pink",
-	{cracky = 2},
-	{"wool_pink.png"},
-	"Pink Wool Stair",
-	"Pink Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
-
-my_register_stair_and_slab(
-	"wool_magenta",
-	"wool:magenta",
-	{cracky = 2},
-	{"wool_magenta.png"},
-	"Magenta Wool Stair",
-	"Magenta Wool Slab",
-	default.node_sound_defaults(),
-	false
-)
+end
